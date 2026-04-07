@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #00c6ff;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .greeting {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    .datetime {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Welcome</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="showMessage()">Submit</button>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    function showMessage() {
+      const name = document.getElementById('nameInput').value.trim();
+
+      if (name === '') {
+        alert('Please enter your name');
+        return;
+      }
+
+      const greetings = [
+        'Have a fantastic day',
+        'Wishing you success and happiness',
+        'Hope today brings you great opportunities',
+        'Stay positive and keep smiling',
+        'Make today amazing'
+      ];
+
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString();
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = `
+        <div class="greeting">Hello, ${name}! ${randomGreeting} 🌟</div>
+        <div class="datetime">📅 ${date}</div>
+        <div class="datetime">⏰ ${time}</div>
+      `;
+    }
+  </script>
+</body>
+</html>

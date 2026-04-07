@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(270deg, #1e3c72, #2a5298, #00c6ff);
+      background-size: 600% 600%;
+      animation: gradientMove 10s ease infinite;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      animation: fadeIn 1.5s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      font-weight: 600;
+      animation: slideDown 1s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      margin-bottom: 20px;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+
+    input:focus {
+      transform: scale(1.05);
+      box-shadow: 0 0 10px rgba(0,198,255,0.7);
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    }
+
+    .output {
+      margin-top: 20px;
+      font-size: 16px;
+      line-height: 1.6;
+      animation: fadeIn 1s ease;
+    }
+
+    .greeting {
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .datetime {
+      font-size: 14px;
+      opacity: 0.9;
+      animation: fadeIn 1.5s ease;
+    }
+
+    /* Floating circles background */
+    .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      animation: float 10s infinite ease-in-out;
+    }
+
+    .circle:nth-child(1) {
+      width: 80px; height: 80px;
+      top: 10%; left: 20%;
+      animation-duration: 12s;
+    }
+
+    .circle:nth-child(2) {
+      width: 120px; height: 120px;
+      top: 70%; left: 10%;
+      animation-duration: 15s;
+    }
+
+    .circle:nth-child(3) {
+      width: 60px; height: 60px;
+      top: 40%; left: 80%;
+      animation-duration: 10s;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-30px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="circle"></div>
+  <div class="circle"></div>
+  <div class="circle"></div>
+
+  <div class="container">
+    <h1>Welcome</h1>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="showMessage()">Submit</button>
+
+    <div class="output" id="output"></div>
+  </div>
+
+  <script>
+    function showMessage() {
+      const name = document.getElementById('nameInput').value.trim();
+
+      if (name === '') {
+        alert('Please enter your name');
+        return;
+      }
+
+      const greetings = [
+        'Have a fantastic day',
+        'Wishing you success and happiness',
+        'Hope today brings you great opportunities',
+        'Stay positive and keep smiling',
+        'Make today amazing'
+      ];
+
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString();
+
+      const outputDiv = document.getElementById('output');
+      outputDiv.innerHTML = `
+        <div class="greeting">Hello, ${name}! ${randomGreeting} 🌟</div>
+        <div class="datetime">📅 ${date}</div>
+        <div class="datetime">⏰ ${time}</div>
+      `;
+    }
+  </script>
+</body>
+</html>
